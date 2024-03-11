@@ -1,0 +1,21 @@
+{%extends 'temp/base.html'%}
+
+{%block body%}
+<div class="container">
+    <h2>Список статей</h2>
+<ul>
+    {% comment %} {% for p in posts %} {% endcomment %}
+<li>
+    {% comment %} <h3><a href="{{url_for('showPost', id_post=p.id)}}" class="list_title">{{p.title}}</a></h3>
+    <p class="anonce">{{p.text[:50]}}</p> {% endcomment %}
+</li>
+{% comment %} {% endfor %} {% endcomment %}
+ 
+</ul>
+
+<a href="/add_post">Добавить статью</a>
+
+</div>
+
+    
+{%endblock%}

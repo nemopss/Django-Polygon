@@ -1,0 +1,35 @@
+{%extends 'temp/base.html'%}
+
+{%block body%}
+
+<div class="text-center body__login">
+    <main class="form-signin">
+      {% comment %} {%for cat, msg in get_flashed_messages(True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+      {%endfor%} {% endcomment %}
+        <form class="login_form" action="" method="post" >
+          {% comment %} <a href="/" class="d-flex align-items-center text-dark text-decoration-none">CyberPOLYtech</a> {% endcomment %}
+          <h1 class="h3 mb-3 fw-normal">Войти</h1>
+      
+          <div class="form-floating">
+            <input type="name" class="form-control" id="floatingInput" placeholder="email" name="email">
+            <label for="floatingInput">Логин</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="psw">
+            <label for="floatingPassword">Пароль</label>
+          </div>
+      
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me" name="remainme"> Запомнить меня
+            </label>
+          </div>
+          <input class="w-100 btn btn-lg btn-primary" type="submit" value="Войти">
+        </form>
+      </main>
+    
+</div>
+
+{%endblock%}
+
