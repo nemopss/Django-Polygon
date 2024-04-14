@@ -4,6 +4,14 @@ from markdown2 import markdown
 from .models import MarkdownContent, Image, Paper
 from .form import ImageForm
 from .tools import ImageSaver
+from django.views import generic
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+import uuid
+from django.core.files.storage import default_storage
+import hashlib
 
 
 def render_markdown_from_database(request, markdown_id):
@@ -36,5 +44,3 @@ def show_paper(request, paper_id):
     title = paper.title
     html_content = markdown(paper.content)
     return render(request, 'cyberpoligon/show_paper.html', {'title': title, 'html_content': html_content})
-
-

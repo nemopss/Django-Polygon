@@ -146,6 +146,7 @@ MDEDITOR_CONFIGS = {
             "help", "info",
             "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar 
         'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # image upload format type
+        'image_upload_url': 'uploads/',
         'image_folder': 'editor',  # image save the folder name
         'theme': 'default',  # edit box theme, dark / default
         'preview_theme': 'default',  # Preview area theme, dark / default
