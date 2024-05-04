@@ -1,11 +1,11 @@
-
-from django.urls import reverse
 import hashlib
-import uuid
 import os
-from django.db import models
-from django.core.files.storage import FileSystemStorage
+import uuid
+
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from mdeditor.fields import MDTextField
 
@@ -21,7 +21,7 @@ class MarkdownContent(models.Model):
 class Image(models.Model):
     id = models.CharField(max_length=100, primary_key=True)
     file_name = models.CharField(max_length=100, null=False)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to="images/")
     mime_type = models.CharField(max_length=100, null=False)
     md5_hash = models.CharField(max_length=100, null=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,11 +34,11 @@ class Image(models.Model):
 
     @property
     def url(self):
-        return reverse('image', kwargs={'image_id': self.id})
-    
+        return reverse("image", kwargs={"image_id": self.id})
+
     def __str__(self):
         return f"{self.id}, {self.file_name}, {self.mime_type}, {self.md5_hash}, {self.created_at}"
-    
+
 
 class Paper(models.Model):
     id = models.AutoField(primary_key=True)
@@ -49,4 +49,3 @@ class Paper(models.Model):
 
     def __str__(self):
         return f"{self.id}, {self.title}, {self.content}, {self.created_at}"
-
