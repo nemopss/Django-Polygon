@@ -1,4 +1,5 @@
 import hashlib
+import json
 import uuid
 
 from django.conf import settings
@@ -62,12 +63,33 @@ def show_paper(request, paper_id):
 @csrf_exempt
 def submit_view(request):
     if request.method == "POST":
-        # Обработка POST запроса
-        data = request.POST  # Данные, отправленные с фронтенда
-        # Обработка данных и отправка ответа
+        # Получение JSON данных из запроса
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError as e:
+            return JsonResponse(
+                {
+                    "status": "error",
+                    "message": "Ошибка разбора JSON: {}".format(str(e)),
+                },
+                status=400,
+            )
+
+        # Сохранение JSON данных в файл
+        try:
+            with open("received_data.json", "w") as f:
+                json.dump(data, f, indent=4)
+        except Exception as e:
+            return JsonResponse(
+                {
+                    "status": "error",
+                    "message": "Ошибка сохранения данных в файл: {}".format(str(e)),
+                },
+                status=500,
+            )
+
         return JsonResponse({"status": "success"})
     else:
-        # Обработка других методов запроса
         return JsonResponse(
             {"status": "error", "message": "Метод не поддерживается"}, status=405
         )
