@@ -14,4 +14,5 @@ urlpatterns = [
     path("papers/", views.paper_list, name="paper_list"),  # Для просмотра списка статей
     path("papers/<int:paper_id>/", views.show_paper, name="show_paper"),
     path("submit/", views.submit_view, name="submit_view"),
+    path("article/<int:article_id>/", views.get_course_data, name="course-data"),
 ]

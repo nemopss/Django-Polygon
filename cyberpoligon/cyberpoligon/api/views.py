@@ -96,3 +96,11 @@ def submit_view(request):
         return JsonResponse(
             {"status": "error", "message": "Метод не поддерживается"}, status=405
         )
+
+
+@csrf_exempt
+def get_course_data(request, article_id):
+    file_path = f"{article_id}.json"
+    with open(file_path, "r") as file:
+        data = json.load(file)
+    return JsonResponse(data)
