@@ -100,7 +100,7 @@ def submit_view(request):
 
 @csrf_exempt
 def get_course_data(request, article_id):
-    file_path = "20240506-004422.json"
+    file_path = f"{article_id}.json"
     with open(file_path, "r") as file:
         data = json.load(file)
     return JsonResponse(data)
